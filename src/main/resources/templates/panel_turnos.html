@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de turnos</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="../css/turnos.css"/>  
+</head>
+<body>
+    
+
+
+ 
+	<div class="full-container">	
+		
+		<h1 style="text-align:center;">Buscar empleado</h1>
+		
+				<span style="text-align:center;" th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+				<span style="text-align:center;" th:classappend="${success} ? successMsg : displayNone" th:text="${success}"></span>
+				
+                        <div class='input-fields'>                   
+
+		                     <div class="cards-box"> 
+			                     <div th:each="empleado, index : ${empleados}">		                     
+				                     
+				                     <a th:href="@{'/admin/panel_turnos/empleado/' + ${empleado.id}}">
+				                        <div class="card">
+											<div class="img">Foto<br> aquí</div>
+											  <h1 th:text="${empleado.name}"></h1>
+										</div>
+									</a>
+		                
+								  </div>        
+		                      </div>
+	                     </div>
+                       	
+	</div>
+
+     
+
+</body>
+</html>

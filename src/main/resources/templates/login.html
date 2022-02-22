@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
+</head>
+<body>
+    
+
+ <span th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+ <span th:classappend="${logout} ? successMsg : displayNone" th:text="${logout}"></span>
+
+
+
+    <div sec:authorize="!isAuthenticated()">
+    
+		<div class="small-container">
+		
+			<div class="form-container">
+			
+				<form th:action="@{/logincheck}" method="POST">
+                        <div class='input-fields'>
+                            <input type='email' placeholder='Mail' class='input-line full-width' name="mail"></input>
+                            <input type='password' placeholder='Contraseña' class='input-line full-width' name="password"></input>
+
+                            <label class="checkbox">Recordarme
+                                <input type="checkbox" value="remember-me" class='input-line full-width' name="checkRememberMe"> 
+                                <span class="checkmark"></span>
+                            </label>
+                            
+	                        <button type="submit" class="btn coral">INGRESAR</button>
+	                        <div class='spacing'><span class='highlight'>Olvidé mi contraseña</span></div>
+
+                        </div>
+                    </form> 
+                       	
+			</div>
+
+		
+		</div>
+    </div>
+      
+         
+
+         
+
+
+
+</body>
+</html>

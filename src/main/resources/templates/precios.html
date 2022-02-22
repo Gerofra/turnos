@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de precios</title>
+    <link rel="stylesheet" href="../../css/styles.css"/>
+    <link rel="stylesheet" href="../../css/turnos.css"/>  
+</head>
+<body>
+    
+
+ 
+	<div class="full-container">	
+		
+		
+			<div class="form-container">
+				<span style="text-align:center;" th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+				<span style="text-align:center;" th:classappend="${success} ? successMsg : displayNone" th:text="${success}"></span>
+				
+
+                    
+                    	<form th:action="@{/admin/precios}" method="POST">
+                        	<div class='input-fields'>
+                    			<div class="input-admin">
+                    			
+                    				<input class='select-line' type="text" name="nombre" placeholder="Nombre...">
+	 								<input class='select-line' type="number" name="precio" placeholder="Precio">
+                				
+                    				<div style="display: flex; justify-content: center;">
+		                        		<button type="submit" class="btn coral">Agregar</button>		                        
+	                        		</div>
+	                        		
+	                        		
+	                        	</div>
+                    	    </div>
+                    	</form> 
+
+
+							<table class="lista">
+                                <thead>
+                                    <tr class="lista">
+                                        <th class="lista"></th>
+                                        <th class="lista">Tipo</th>
+                                        <th class="lista">Precio</th>
+                                        <th class="lista"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>				        	
+                                    <tr class="lista" th:each="tipo, index : ${tipos}">
+										<td class="lista"></td>
+										<td class="lista" th:text="${tipo.nombre}"></td>
+										<td class="lista" >$ <span th:text="${tipo.precio}"></span></td>
+										<td class="lista"> 
+                                            <a th:href="@{'/admin/delete/' + ${tipo.id}}"><img alt="" src="../../img/cancel.png" style="width:16px;"></a>
+                                    	</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                    </div>
+                       	
+			</div>
+
+
+
+		
+
+    </div>
+      
+         
+
+</body>
+</html>

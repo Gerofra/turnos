@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
+</head>
+<body>
+    
+
+ <span th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+ <span th:classappend="${logout} ? successMsg : displayNone" th:text="${logout}"></span>
+
+
+
+    
+    
+		<div class="small-container">
+		
+			
+				<div class="title" th:if="${session.usuariosession != null}" th:text="${'¡Hola, ' + session.usuariosession.name + '!'}"></div>
+			
+				<a th:href="@{/turnos}"><button class="btn green">SACAR TURNO</button></a>
+				<a th:href="@{/login}"><button class="btn coral">VER MI TURNO</button></a>
+				
+				<a sec:authorize="!isAuthenticated()" th:href="@{/login}"><button class="btn coral">INGRESAR</button></a>	
+				<a sec:authorize="isAuthenticated()" href="/admin"><button class="btn coral">ADMINISTRACIÓN</button></a>
+				<a sec:authorize="isAuthenticated()" href="/logout"><button class="btn coral">SALIR</button></a>
+   		 </div>
+      
+         
+
+         
+
+
+
+</body>
+</html>

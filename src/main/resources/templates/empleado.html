@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de administración</title>
+    <link rel="stylesheet" href="../../../css/styles.css"/>
+    <link rel="stylesheet" href="../../../css/turnos.css"/>  
+</head>
+<body>
+    
+
+ 
+
+
+ 
+	<div class="full-container">	
+		
+		
+			<div class="form-container">
+				<span style="text-align:center;" th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+				<span style="text-align:center;" th:classappend="${success} ? successMsg : displayNone" th:text="${success}"></span>
+				
+				
+				<h1 style="text-align:center;" th:text="${empleado.name + ' ' + empleado.lastname}"></h1>
+				<form th:action="@{'/admin/panel_turnos/empleado/' + ${empleado.id}}" method="POST">
+                        <div class='input-fields'>
+
+							<div class="input-admin">
+			
+								<input type="hidden" th:value="${empleado.id}" name="idEmpleado">
+								<input class='select-line' type="date" style="width: 210px;" name="fecha" th:min="${fechaActual}">
+								<select class='select-line' style="width: 120px;" name="hora">
+										<option value="10:00">10:00</option>
+										<option value="11:00">11:00</option>
+										<option value="12:00">12:00</option>
+										<option value="13:00">13:00</option>
+										<option value="14:00">14:00</option>
+										<option value="15:00">15:00</option>
+										<option value="16:00">16:00</option>
+										<option value="17:00">17:00</option>
+										<option value="18:00">18:00</option>
+										<option value="19:00">19:00</option>
+										<option value="20:00">20:00</option>
+								</select>
+							</div>
+							
+	                        <div style="display: flex; justify-content: center;">
+		                        <button type="submit" name="submit" class="btn coral">Agregar turno</button>
+								<!--  <button type="submit" name="verEmpleado" class="btn coral">Ver empleado</button>-->		                        
+	                        </div>
+		                   
+	
+	                   </div>
+                    </form> 
+                    
+                    <hr>
+                    
+                    
+                    	<form th:action="@{'/admin/panel_turnos/empleado/turnos/' + ${empleado.id}}" method="GET">
+                        	<div class='input-fields'>
+                    			<div class="input-admin">
+                    				<input type="hidden" name="idEmpleado" th:value="${empleado.id}">
+	 								<select class='select-line' style="width: 120px;" name="mes">
+										<option value="1">Enero</option>
+										<option value="2">Febrero</option>
+										<option value="3">Marzo</option>
+										<option value="4">Abril</option>
+										<option value="5">Mayo</option>
+										<option value="6">Junio</option>
+										<option value="7">Julio</option>
+										<option value="8">Agosto</option>
+										<option value="9">Septiembre</option>
+										<option value="10">Octubre</option>
+										<option value="11">Noviembre</option>
+										<option value="12">Diciembre</option>																				
+									</select> 
+									
+									<select class='select-line' style="width: 120px;" name="dia">
+										<option value="todos">Todos</option>
+										<option th:each="i: ${#numbers.sequence(1, 31)}" th:value="${i}" th:text="${i}"></option>																			
+									</select>                  
+                                     
+                    				
+                    				<div style="display: flex; justify-content: center;">
+		                        		<button type="submit" class="btn coral">Buscar</button>		                        
+	                        		</div>
+	                        		
+	                        		
+	                        	</div>
+                    	    </div>
+                    	</form> 
+
+
+							<table class="lista" th:if="${turnos != null}">
+                                <thead>
+                                    <tr class="lista">
+                                        <th class="lista"></th>
+                                        <th class="lista">Día</th>
+                                        <th class="lista">Hora</th>
+                                        <th class="lista">Cliente</th>
+                                        <th class="lista">Pagó</th>
+                                        <th class="lista"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>				        	
+                                    <tr class="lista" th:each="turno, index : ${turnos}">
+                                        <td class="lista" >-</td>
+                                        <td class="lista"><span th:text="${turno.dia +'/'+ turno.mes +'/'+ turno.anio}"></span></td>
+										<td class="lista"><span th:text="${turno.hora}"></span></td>
+										<td class="lista"></td>
+										<td class="lista"></td>
+										<td class="lista"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                    </div>
+                       	
+			</div>
+
+
+
+		
+
+    </div>
+      
+         
+
+</body>
+</html>

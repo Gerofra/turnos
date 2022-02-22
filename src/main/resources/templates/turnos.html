@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacar turno</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="../css/turnos.css"/>  
+</head>
+<body>
+    
+
+<span style="text-align:center;" th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+<span style="text-align:center;" th:classappend="${success} ? successMsg : displayNone" th:text="${success}"></span>
+				
+
+
+
+
+                <div th:if="${empleados != null}" class='input-fields'>                   
+					<h1 style="text-align:center;">Elige tu peluquero</h1>
+		                     <div class="cards-box"> 
+			                     <div th:each="empleado, index : ${empleados}">		                     
+				                     
+				                     <a th:href="@{'/turnos/' + ${empleado.id}}">
+				                        <div class="card">
+											<div class="img">Foto<br> aquí</div>
+											  <h1 th:text="${empleado.name}"></h1>
+										</div>
+									</a>
+		                
+								  </div>        
+		                      </div>
+	             </div>
+	
+		
+		
+		<div th:if="${empleadoElegido != null}">
+		
+						<form th:action="@{/turnos/calendario}" method="GET">
+                        	<div class='input-fields'>
+                    			<div class="input-admin">
+                    				<input type="hidden" name="idEmpleadoElegido" th:value="${empleadoElegido.id}">
+                    				
+	 								<select class='select-line' name="tipoId">
+										<option th:each="tipo, index : ${tipos}" th:value="${tipo.id}" th:text="${tipo.nombre + ' ($' + tipo.precio + ')'}"></option>
+																				
+									</select> 
+       				
+                    				<div style="display: flex; justify-content: center;">
+		                        		<button type="submit" class="btn coral">Elegir</button>		                        
+	                        		</div>
+	                        		
+	                        		
+	                        	</div>
+                    	    </div>
+                    	</form> 
+		
+		</div>
+		
+		
+		
+		
+		
+		<div th:if="${idEmpleadoElegido != null}">
+						
+                <div class='input-fields'>
+                    			                   			                  			
+					<!-- Slideshow container -->
+					<div class="slideshow-container">
+					
+					  <!-- Full-width images with number and caption text -->
+					  <div class="mySlides fade" th:each="calendario, iterCal : ${calendarioAnual}">					  
+					  	
+					  	<div class="top-calendario">			 
+						   	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+						    <div class="numbertext" th:text="${listaNombresMeses[__${iterCal.index}__] + ' ' + listaAnios[__${iterCal.index}__]}"></div>
+				    		<a class="next" onclick="plusSlides(1)">&#10095;</a>
+			    		</div>	
+			    		
+					    <table>
+                    		<thead>
+                                    <tr class="dias-cal">
+                                        <th>Dom.</th>
+                                        <th>Lun.</th>
+                                        <th>Mar.</th>
+                                        <th>Mie.</th>
+                                        <th>Jue.</th>
+                                        <th>Vie.</th>
+                                        <th>Sab.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>			        	
+                                    <tr th:each="semana, index : ${calendario}">
+                                        <td th:each="dia, index : ${semana}">
+	                                        <form th:classappend="${dia} ? '' : displayNone" th:action="@{/turnos/buscar}" method="GET">
+	                                        	<input type="hidden" name="id" th:value="${idEmpleadoElegido}">
+	                                        	<input type="hidden" name="tipo" th:value="${tipo}">
+	                                        	<input type="hidden" name="dia" th:value="${dia}">
+	                                        	<input type="hidden" name="mes" th:value="${listaMeses[__${iterCal.index}__]}">
+	                                        	<input type="hidden" name="anio" th:value="${listaAnios[__${iterCal.index}__]}">
+		                                        <button class="btn-calendario" type="submit">
+		                                        	<div th:classappend="${dia} ? calendarDay : displayNone" th:text="${dia}"></div>
+		                                        </button>                      	
+	                                        </form>
+                                        </td>
+                                       								
+                                    </tr>
+                         	</tbody>
+                         </table>
+					    
+					  </div>
+					</div>
+
+	
+                    			
+                    			
+               </div>
+		</div>
+		
+
+
+							<table class="lista" th:if="${turnos != null}">
+                                <thead>
+                                    <tr class="lista">
+                                        <th class="lista"></th>
+                                        <th class="lista">Hora</th>
+                                        <th class="lista">Precio</th>
+                                        <th class="lista"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>			        	
+                                    <tr class="lista" th:each="turno, index : ${turnos}">
+                                        <td class="lista" >-</td>
+										<td class="lista"><span th:text="${turno.hora}"></span></td>
+										<td class="lista"></td>
+										<td class="lista"><div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>	
+
+
+
+
+<form th:action="@{/mp}" method="POST">
+    <div class="cho-container"></div>
+</form>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+       
+    <script>
+    
+    		
+        const mp = new MercadoPago('TEST-85a1332f-c459-4b6d-af17-317316626b13', {
+            locale: 'es-AR'
+        })
+        const checkout = mp.checkout({
+            preference: {
+                id: '1'
+            }
+        });
+        checkout.render({
+            container: '.cho-container',
+            label: 'Pagar'
+        });
+    </script>
+      
+<script type="text/javascript" src="../js/slide.js"></script>        
+
+</body>
+</html>
