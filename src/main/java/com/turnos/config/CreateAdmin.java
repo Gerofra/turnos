@@ -28,30 +28,40 @@ public class CreateAdmin implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-				
-		
-		/* ASIGNO ROL ADINISTRADOR		
-		Usuario usuario = new Usuario();
-		String encriptada = new BCryptPasswordEncoder().encode("admin");
-		
-		usuario.setName("Gerónimo");
-		usuario.setLastname("Pericoli");
-		usuario.setMail("geronimopericoli@gmail.com");
-		usuario.setPassword(encriptada);
-		
-		Rol rolAdmin = rolService.getByRolEnum(RolEnum.ROLE_ADMIN).get();
-		Rol rolPropietario = rolService.getByRolEnum(RolEnum.ROLE_PROPIETARIO).get();
-		Rol rolUser = rolService.getByRolEnum(RolEnum.ROLE_USUARIO).get();
-		
-		Set<Rol> roles = new HashSet<>();
-		roles.add(rolUser);
-		roles.add(rolPropietario);
-		roles.add(rolAdmin);
-		usuario.setRoles(roles);
-		
-		usuarioRepo.save(usuario);
-		*/
-		
+
+		/*
+		 * ASIGNO ROL ADINISTRADOR Usuario usuario = new Usuario(); String encriptada =
+		 * new BCryptPasswordEncoder().encode("admin");
+		 * 
+		 * usuario.setName("Gerónimo"); usuario.setLastname("Pericoli");
+		 * usuario.setMail("geronimopericoli@gmail.com");
+		 * usuario.setPassword(encriptada);
+		 * 
+		 * Rol rolAdmin = rolService.getByRolEnum(RolEnum.ROLE_ADMIN).get(); Rol
+		 * rolPropietario = rolService.getByRolEnum(RolEnum.ROLE_PROPIETARIO).get(); Rol
+		 * rolUser = rolService.getByRolEnum(RolEnum.ROLE_USUARIO).get();
+		 * 
+		 * Set<Rol> roles = new HashSet<>(); roles.add(rolUser);
+		 * roles.add(rolPropietario); roles.add(rolAdmin); usuario.setRoles(roles);
+		 * 
+		 * usuarioRepo.save(usuario);
+		 */
+
+		/*
+		 * ASIGNO ROL EMPLEADO Usuario usuario = new Usuario(); String encriptada = new
+		 * BCryptPasswordEncoder().encode("admin");
+		 * 
+		 * usuario.setName("Raúl"); usuario.setLastname("Ramón");
+		 * usuario.setMail("raul@gmail.com"); usuario.setPassword(encriptada);
+		 * 
+		 * Rol rolEmpleado = rolService.getByRolEnum(RolEnum.ROLE_EMPLEADO).get();
+		 * 
+		 * 
+		 * Set<Rol> roles = new HashSet<>(); roles.add(rolEmpleado);
+		 * usuario.setRoles(roles);
+		 * 
+		 * usuarioRepo.save(usuario);
+		 */
 
 	}
 }

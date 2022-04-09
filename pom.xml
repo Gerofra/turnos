@@ -78,6 +78,20 @@
             <artifactId> sdk-java </artifactId>
             <version> 1.9.0 </version>
 		</dependency>
+		<dependency>
+		<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>net.sourceforge.nekohtml</groupId>
+		    <artifactId>nekohtml</artifactId>
+		    
+		</dependency>
     </dependencies>
 
 	<build>

@@ -11,28 +11,39 @@ public class Tipo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	private String duracion;
 	private Integer precio;
-	
-	
+
+	public String getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(String duracion) {
+		this.duracion = duracion;
+	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public Integer getPrecio() {
 		return precio;
 	}
+
 	public void setPrecio(Integer precio) {
 		this.precio = precio;
 	}
-	
-	
-	
+
 }

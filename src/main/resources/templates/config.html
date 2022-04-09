@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuraciones</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="../css/turnos.css"/>  
+</head>
+<body>
+    
+
+ 
+		<div class="small-container">
+		
+
+				<span style="text-align:center;" th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+				<span style="text-align:center;" th:classappend="${success} ? successMsg : displayNone" th:text="${success}"></span>
+				
+				<div class="title">Configuración</div>
+				<div class="subtitle">Modifique los campos que desee actualizar.</div>
+				<form th:action="@{/admin/config/editar}" method="POST">
+					<div class='input-fields'>
+					
+							<div class="formInputBox">
+								<label>Nombre</label>
+								<input class='select-line' type="text" name="nombre" th:placeholder="${config.nombre}">
+							</div>
+							
+							<div class="formInputBox">		
+								<label>Descripción</label>
+								<input class='select-line' type="text" name="descrip" th:placeholder="${config.descrip}">
+							</div>	
+						
+							<div class="formInputBox" style="width:100%; flex-direction: row;">
+								<div class="formInputBox" style="justify-content:flex-start; width:70%;">
+									<label>Calle</label>
+									<input class='select-line' type="text" name="calle" th:placeholder="${config.calle}">
+								</div>							
+								<div class="formInputBox" style="justify-content:flex-end; width:30%;">
+									<label>Altura</label>
+									<input class='select-line' type="text" name="altura" th:placeholder="${config.altura}">
+								</div>
+							</div>
+							
+							<div class="formInputBox">	
+								<label>Referencia</label>
+								<input class='select-line' type="text" name="referencia" th:placeholder="${config.referencia}">
+							</div>
+							
+							<div class="formInputBox">	
+								<label>Localidad</label>
+								<input class='select-line' type="text" name="localidad" th:placeholder="${config.localidad}">
+							</div>	
+						
+							<div class="formInputBox" style="width:100%; flex-direction: row;">
+								<div class="formInputBox" style="justify-content:flex-start;">
+									<label>Abre</label>
+									<input class='select-line' type="time" name="abre">
+								</div>							
+								<div class="formInputBox" style="justify-content:flex-end;">
+									<label>Cierra</label>
+									<input class='select-line' type="time" name="cierra">
+								</div>
+							</div>
+							
+							<button type="submit" class="btn2 green">Guardar</button>
+					</div>
+				</form>
+
+				<div style="margin:auto;">
+					<a th:href="@{/admin}"><button class="btn2 coral" style="width: auto;">Inicio</button></a>
+				</div>
+
+		
+			</div>
+
+
+ 
+
+         
+
+</body>
+</html>

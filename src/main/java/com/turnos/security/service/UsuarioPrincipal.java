@@ -10,24 +10,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.turnos.entities.Usuario;
 
-
-
 public class UsuarioPrincipal implements UserDetails {
 
-	
 	private String id;
 	private String password;
 	private String mail;
-	
-	private Collection<? extends GrantedAuthority> authorities;
-	
-	
-	
-	
 
-	
-	
-	
+	private Collection<? extends GrantedAuthority> authorities;
+
 	public UsuarioPrincipal(String id, String password, String mail,
 			Collection<? extends GrantedAuthority> authorities) {
 		super();
@@ -37,16 +27,12 @@ public class UsuarioPrincipal implements UserDetails {
 		this.authorities = authorities;
 	}
 
-
 	public static UsuarioPrincipal build(Usuario usuario) {
-		List<GrantedAuthority> authorities = 
-				usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolEnum().name())).collect(Collectors.toList());
-		
-		
-		
+		List<GrantedAuthority> authorities = usuario.getRoles().stream()
+				.map(rol -> new SimpleGrantedAuthority(rol.getRolEnum().name())).collect(Collectors.toList());
+
 		return new UsuarioPrincipal(usuario.getId(), usuario.getPassword(), usuario.getMail(), authorities);
 	}
-	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -83,12 +69,9 @@ public class UsuarioPrincipal implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
 
 	public String getId() {
 		return id;
 	}
-
-
 
 }

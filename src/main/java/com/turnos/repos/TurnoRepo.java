@@ -15,21 +15,27 @@ import com.turnos.entities.Usuario;
 public interface TurnoRepo extends JpaRepository<Turno, Long> {
 
 	Optional<Turno> findById(String id);
+
 	boolean existsById(String id);
-	
+
 	@Query("SELECT c FROM Turno c WHERE c.mes = :mes AND c.empleado = :empleado")
 	public List<Turno> turnosEmpleadoMes(@Param("mes") Integer mes, @Param("empleado") Usuario empleado);
-	
+
 	@Query("SELECT c FROM Turno c WHERE c.mes = :mes AND c.dia = :dia AND c.empleado = :empleado")
-	public List<Turno> turnosEmpleado(@Param("mes") Integer mes, @Param("dia") Integer dia, @Param("empleado") Usuario empleado);
-	
-	@Query("SELECT DISTINCT c FROM Turno c WHERE c.mes = :mes AND c.dia = :dia AND c.empleado = :empleado AND c.hora = :hora ")
-	public List<Turno> existeTurno(@Param("mes") Integer mes, @Param("dia") Integer dia, @Param("hora") String hora, @Param("empleado") Usuario empleado);
-	
-	@Query("SELECT DISTINCT c FROM Turno c WHERE c.mes = :mes AND c.dia = :dia AND c.empleado = :empleado AND c.anio = :anio AND c.cliente = null")
-	public List<Turno> turnosLibres(@Param("mes") Integer mes, @Param("dia") Integer dia, @Param("anio") Integer anio, @Param("empleado") Usuario empleado);
-	
-	
+	public List<Turno> turnosEmpleado(@Param("mes") Integer mes, @Param("dia") Integer dia,
+			@Param("empleado") Usuario empleado);
+
+	@Query("SELECT DISTINCT c FROM Turno c WHERE c.mes = :mes AND c.dia = :dia AND c.empleado = :empleado AND c.hora = :hora")
+	public List<Turno> existeTurno(@Param("mes") Integer mes, @Param("dia") Integer dia, @Param("hora") String hora,
+			@Param("empleado") Usuario empleado);
+
+	@Query("SELECT DISTINCT c FROM Turno c WHERE c.mes = :mes AND c.dia = :dia AND c.empleado = :empleado AND c.anio = :anio")
+	public List<Turno> turnosLibres(@Param("mes") Integer mes, @Param("dia") Integer dia, @Param("anio") Integer anio,
+			@Param("empleado") Usuario empleado);
+
+	@Query("SELECT c FROM Turno c WHERE c.horario_id = :horario_id AND c.empleado = :empleado")
+	public List<Turno> turnosPorHorario(@Param("horario_id") Long horario_id, @Param("empleado") Usuario empleado);
+
 	@Query("SELECT c FROM Turno c WHERE c.empleado = :empleado")
 	public List<Turno> buscarPorEmpleado(@Param("empleado") Usuario empleado);
 }

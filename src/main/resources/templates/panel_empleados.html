@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de empleados</title>
+    <link rel="stylesheet" href="../../css/styles.css"/>
+    <link rel="stylesheet" href="../../css/turnos.css"/>  
+</head>
+<body>
+    
+
+
+		<div style="margin:auto;">
+			<a th:href="@{/admin}"><button class="btn2 coral" style="width: auto;">Inicio</button></a>
+			<span style="text-align:center;" th:classappend="${error} ? errorMsg : displayNone" th:text="${error}"></span>
+			<span style="text-align:center;" th:classappend="${success} ? successMsg : displayNone" th:text="${success}"></span>
+		</div>
+
+
+ 		<div class="small-container">				
+				<div th:if="${empleado}" class="title">Editar empleado</div>
+				<div th:if="${empleado}" class="subtitle">Modifique únicamente los campos que desee actualizar.</div>
+				<div th:if="${empleado} == null" class="title">Agregar empleado</div>
+				<div th:if="${empleado} == null" class="subtitle">Complete los campos requeridos para registrar un nuevo empleado.</div>
+				<form th:if="${empleado}" th:action="@{/admin/panel_empleados/editar}" method="POST">
+					<div class='input-fields'>
+					
+							<div class="formInputBox">
+								<label>Nombre</label>
+								<input class='select-line' type="text" name="nombre" th:placeholder="${empleado.name}" required>
+							</div>
+							
+							<div class="formInputBox">		
+								<label>Apellido</label>
+								<input class='select-line' type="text" name="apellido" th:placeholder="${empleado.lastname}" required>
+							</div>	
+							
+							<div class="formInputBox">	
+								<label>Mail</label>
+								<input class='select-line' type="email" name="mail" th:placeholder="${empleado.mail}" required>
+							</div>	
+							
+							<div class="formInputBox">	
+								<label>Teléfono</label>
+								<input class='select-line' type="text" name="tel" th:placeholder="${empleado.tel}" required>
+							</div>
+							
+							<div class="formInputBox">	
+								<label>Contraseña</label>
+								<input class='select-line' type="password" name="password" placeholder="Contraseña..." required>
+							</div>
+							
+							<div class="formInputBox">	
+								<label>Repita la contraseña</label>
+								<input class='select-line' type="password" name="password2" placeholder="Repita la contraseña..." required>
+							</div>
+							
+							<button type="submit" class="btn2 green">Guardar</button>
+					</div>
+				</form>
+				
+				<form th:if="${empleado} == null" th:action="@{/admin/panel_empleados/editar}" method="POST">
+					<div class='input-fields'>
+					
+							<div class="formInputBox">
+								<label>Nombre</label>
+								<input class='select-line' type="text" name="nombre" placeholder="Nombre..." required>
+							</div>
+							
+							<div class="formInputBox">		
+								<label>Apellido</label>
+								<input class='select-line' type="text" name="apellido" placeholder="Apellido..." required>
+							</div>	
+							
+							<div class="formInputBox">	
+								<label>Mail</label>
+								<input class='select-line' type="email" name="mail" placeholder="Mail..." required>
+							</div>	
+							
+							<div class="formInputBox">	
+								<label>Teléfono</label>
+								<input class='select-line' type="text" name="tel" placeholder="Teléfono..." required>
+							</div>
+							
+							<div class="formInputBox">	
+								<label>Contraseña</label>
+								<input class='select-line' type="password" name="password" placeholder="Contraseña..." required>
+							</div>
+							
+							<div class="formInputBox">	
+								<label>Repita la contraseña</label>
+								<input class='select-line' type="password" name="password2" placeholder="Repita la contraseña..." required>
+							</div>
+							
+							<button type="submit" class="btn2 green">Guardar</button>
+					</div>
+				</form>
+				
+				
+				
+				<table class="lista" th:if="${empleados}" style="font-size:0.8em;">
+                	<thead>
+                    	<tr class="lista">
+                        	<th class="lista"></th>
+                            <th class="lista">Nombre</th>
+                            <th class="lista">Tel.</th>
+                            <th class="lista">Mail</th>
+                            <th class="lista"></th>
+                    	</tr>
+					</thead>
+	                <tbody>				        	
+	                	<tr class="lista" th:each="emp, index : ${empleados}">
+							<td class="lista"></td>
+							<td class="lista" th:text="${emp.name + ' ' + emp.lastname}"></td>
+							<td class="lista" ><span></span></td>
+							<td class="lista" ><span th:text="${emp.mail}"></span></td>
+							<td class="lista"> 
+                            	<a th:href="@{'/admin/delete/' + ${emp.id}}"><img alt="" src="../../img/cancel.png" style="width:16px;"></a>
+                            </td>
+						</tr>
+					</tbody>
+				</table>
+
+
+		
+		</div>
+		
+	
+                   
+
+
+							
+
+
+             
+
+
+		
+      
+         
+
+</body>
+</html>

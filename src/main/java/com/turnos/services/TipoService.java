@@ -17,38 +17,40 @@ public class TipoService {
 
 	@Autowired
 	TipoRepo tipoRepo;
-	
+
 	@Transactional
-	public void agregarTipo(String nombre, Integer precio) throws ErrorService {		
-		
-		Tipo tipo = new Tipo();		
+	public void agregarTipo(String nombre, Integer precio, String duracion) throws ErrorService {
+
+		Tipo tipo = new Tipo();
 		tipo.setNombre(nombre);
+		tipo.setDuracion(duracion);
+		;
 		tipo.setPrecio(precio);
-				
-		tipoRepo.save(tipo);	
+
+		tipoRepo.save(tipo);
 	}
-	
+
 	@Transactional
-	public void eliminar(Long id) throws ErrorService {	
-		
+	public void eliminar(Long id) throws ErrorService {
+
 		Optional<Tipo> respuesta = tipoRepo.findById(id);
 		if (respuesta.isPresent()) {
 			tipoRepo.delete(respuesta.get());
 		}
 	}
-	
+
 	@Transactional
-	public List<Tipo> listaTipo(){
+	public List<Tipo> listaTipo() {
 		return tipoRepo.findAll();
 	}
-	
+
 	@Transactional
-	public Tipo buscarPorId(Long id){
-		Optional<Tipo> respuesta = tipoRepo.findById(id);
+	public Tipo buscarPorId(String id) {
+		Long id_tipo = Long.valueOf(id);
+		Optional<Tipo> respuesta = tipoRepo.findById(id_tipo);
 		if (respuesta.isPresent()) {
 			return respuesta.get();
-		}		
+		}
 		return null;
 	}
 }
-

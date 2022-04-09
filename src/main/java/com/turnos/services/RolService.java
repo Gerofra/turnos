@@ -17,11 +17,11 @@ public class RolService {
 
 	@Autowired
 	RolRepo rolRepo;
-	
+
 	public void save(Rol rol) {
 		rolRepo.save(rol);
 	}
-	
+
 	public Optional<Rol> getById(Integer id) {
 		return rolRepo.findById(id);
 	}
@@ -29,7 +29,7 @@ public class RolService {
 	public Optional<Rol> getByRolEnum(RolEnum rol) {
 		return rolRepo.findByRolEnum(rol);
 	}
-	
+
 	public boolean existById(Integer id) {
 		return rolRepo.existsById(id);
 	}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template MercadoPago</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
+</head>
+<body>
+    
+    <div id="app">
+     
+		<div class="small-container">
+				<input type="email" name="mail">
+			 	<a target="_blank" @click="createPreference"><button class="btn green">Crear</button></a>
+			 	<a target="_blank" v-if="preference.initPoint" v-bind:href="preference.initPoint"><button class="btn green">Pagar</button></a>
+				<div class="cho-container"></div>
+   		</div>
+   		
+   		<div>
+   			<input type="text" id="idPago" style="background-color: white; color: black; padding: 10px 16px;">
+   			<button @click="buscarPago">Buscar</button>
+   		
+   		</div>
+   		
+   		
+   		<div th:if=${genericResponse}>
+   			<p th:text=${collection_id}></p>
+   			<p th:text=${collection_status}></p>
+   			<p th:text=${external_reference}></p>
+   			<p th:text=${payment_type}></p>
+   			<p th:text=${merchant_order_id}></p>
+   			<p th:text=${preference_id}></p>
+   			<p th:text=${site_id}></p>
+   			<p th:text=${processing_mode}></p>
+   			<p th:text=${merchant_account_id}></p>
+   		</div>
+	
+	</div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/sandbox.js"></script>
+    
+	<script src="https://sdk.mercadopago.com/js/v2"></script>
+    
+
+
+
+</body>
+</html>

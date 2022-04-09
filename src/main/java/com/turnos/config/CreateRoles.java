@@ -16,19 +16,16 @@ public class CreateRoles implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		/* AGREGAN LOS ROLES A LA BASE DE DATOS A TRAVES DE LINEA DE COMANDO
-		Rol rolAdmin = new Rol(RolEnum.ROLE_ADMIN);
-		Rol rolPropietario = new Rol(RolEnum.ROLE_PROPIETARIO);
-		Rol rolEmpleado = new Rol(RolEnum.ROLE_EMPLEADO);
-		Rol rolUser = new Rol(RolEnum.ROLE_USUARIO);
-		
-		rolService.save(rolAdmin);
-		rolService.save(rolPropietario);
-		rolService.save(rolEmpleado);
-		rolService.save(rolUser);
-*/
-		
+
+		/*
+		 * AGREGAN LOS ROLES A LA BASE DE DATOS A TRAVES DE LINEA DE COMANDO Rol
+		 * rolAdmin = new Rol(RolEnum.ROLE_ADMIN); Rol rolPropietario = new
+		 * Rol(RolEnum.ROLE_PROPIETARIO); Rol rolEmpleado = new
+		 * Rol(RolEnum.ROLE_EMPLEADO); Rol rolUser = new Rol(RolEnum.ROLE_USUARIO);
+		 * 
+		 * rolService.save(rolAdmin); rolService.save(rolPropietario);
+		 * rolService.save(rolEmpleado); rolService.save(rolUser);
+		 */
 
 	}
 }

@@ -27,9 +27,9 @@
                     			
                     				<input class='select-line' type="text" name="nombre" placeholder="Nombre...">
 	 								<input class='select-line' type="number" name="precio" placeholder="Precio">
-                				
+                					<input class='select-line' type="time" name="duracion" placeholder="Duración">
                     				<div style="display: flex; justify-content: center;">
-		                        		<button type="submit" class="btn coral">Agregar</button>		                        
+		                        		<button type="submit" class="btn2 coral">Agregar</button>		                        
 	                        		</div>
 	                        		
 	                        		
@@ -44,6 +44,7 @@
                                         <th class="lista"></th>
                                         <th class="lista">Tipo</th>
                                         <th class="lista">Precio</th>
+                                        <th class="lista">Duración</th>
                                         <th class="lista"></th>
                                     </tr>
                                 </thead>
@@ -52,6 +53,7 @@
 										<td class="lista"></td>
 										<td class="lista" th:text="${tipo.nombre}"></td>
 										<td class="lista" >$ <span th:text="${tipo.precio}"></span></td>
+										<td class="lista" ><span th:text="${tipo.duracion}"></span>hs.</td>
 										<td class="lista"> 
                                             <a th:href="@{'/admin/delete/' + ${tipo.id}}"><img alt="" src="../../img/cancel.png" style="width:16px;"></a>
                                     	</td>
@@ -67,8 +69,6 @@
 
 
 		
-
-    </div>
       
          
 

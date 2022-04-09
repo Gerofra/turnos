@@ -15,26 +15,17 @@
 
 
 
-    
-    
-		<div class="small-container">
-		
+		<div class="small-container">	
 			
 				<div class="title" th:if="${session.usuariosession != null}" th:text="${'¡Hola, ' + session.usuariosession.name + '!'}"></div>
 			
-				<a th:href="@{/turnos}"><button class="btn green">SACAR TURNO</button></a>
-				<a th:href="@{/login}"><button class="btn coral">VER MI TURNO</button></a>
-				
-				<a sec:authorize="!isAuthenticated()" th:href="@{/login}"><button class="btn coral">INGRESAR</button></a>	
-				<a sec:authorize="isAuthenticated()" href="/admin"><button class="btn coral">ADMINISTRACIÓN</button></a>
-				<a sec:authorize="isAuthenticated()" href="/logout"><button class="btn coral">SALIR</button></a>
+				<a th:href="@{/turnos}"><button class="btn2 green">PEDIR TURNO</button></a>
+				<a th:href="@{/login}"><button class="btn2 coral">VER MI TURNO</button></a>
+					
+				<a sec:authorize="isAuthenticated()" href="/admin"><button class="btn2 coral">ADMINISTRACIÓN</button></a>
+				<a sec:authorize="isAuthenticated()" href="/logout"><button class="btn2 coral">SALIR</button></a>
    		 </div>
       
-         
-
-         
-
-
 
 </body>
 </html>

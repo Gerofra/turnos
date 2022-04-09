@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ErrorControlador implements ErrorController {
 
-	@RequestMapping(value = "/error", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/error", method = { RequestMethod.GET, RequestMethod.POST })
 	public String paginaError(Model model, HttpServletRequest request) {
-		
+
 		String msg = "";
-		
+
 		int codError = (int) request.getAttribute("javax.servlet.error.status_code");
-		
+
 		switch (codError) {
 		case 400:
 			msg = "El recurso solicitado no existe.";
@@ -37,11 +37,11 @@ public class ErrorControlador implements ErrorController {
 		default:
 			break;
 		}
-		
+
 		model.addAttribute("codigo", codError);
 		model.addAttribute("msg", msg);
-		
+
 		return "error";
 	}
-	
+
 }

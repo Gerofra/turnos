@@ -19,19 +19,15 @@ public class Rol {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NonNull
 	@Enumerated(EnumType.STRING)
 	@Column(unique = true)
 	private RolEnum rolEnum;
 
-	
-
 	public Rol() {
 		super();
 	}
-
-
 
 	public Rol(Integer id, RolEnum rolEnum) {
 		super();
@@ -39,39 +35,25 @@ public class Rol {
 		this.rolEnum = rolEnum;
 	}
 
-
-
 	public Rol(RolEnum rolEnum) {
 		super();
 		this.rolEnum = rolEnum;
 	}
 
-
-
 	public Integer getId() {
 		return id;
 	}
-
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-
 	public RolEnum getRolEnum() {
 		return rolEnum;
 	}
-
-
 
 	public void setRolEnum(RolEnum rolEnum) {
 		this.rolEnum = rolEnum;
 	}
 
-
-
-	
-	
 }

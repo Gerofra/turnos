@@ -18,11 +18,11 @@
 			
 				<div class="title" th:if="${session.usuariosession != null}" th:text="${'¡Hola, ' + session.usuariosession.name + '!'}"></div>
 
-				<a th:href="@{/admin/panel_turnos}"><button class="btn coral">AGREGAR TURNOS</button></a>
-				<a th:href="@{/admin/precios}"><button class="btn coral">PRECIOS</button></a>
-				<a th:href="@{/admin/empleados}"><button class="btn coral">EMPLEADOS</button></a>
-
-
+				<a th:href="@{/admin/panel_turnos}"><button class="btn2 coral">AGREGAR TURNOS</button></a>
+				<a th:href="@{/admin/precios}"><button class="btn2 coral">PRECIOS</button></a>
+				<a th:href="@{/admin/panel_empleados}"><button class="btn2 coral">EMPLEADOS</button></a>
+				<a th:href="@{/admin/config}"><button class="btn2 coral">CONFIGURACIÓN</button></a>
+				<a th:href="@{/}"><button class="btn2 green">Atrás</button></a>
 		
 			</div>
 	    </div>

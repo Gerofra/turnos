@@ -12,5 +12,6 @@ import com.turnos.enums.RolEnum;
 public interface RolRepo extends JpaRepository<Rol, Integer> {
 
 	Optional<Rol> findByRolEnum(RolEnum rolEnum);
+
 	boolean existsByRolEnum(RolEnum rolEnum);
 }

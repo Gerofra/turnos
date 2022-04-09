@@ -120,52 +120,31 @@
 		</div>
 		
 
+						<div class="horarios" th:if="${sinTurnos}">
+							<span style="text-align:center;" th:classappend="${sinTurnos} ? errorMsg : displayNone" th:text="${sinTurnos}"></span>
+						</div>						
+						
+						<div class="horarios" th:if="${turnos != null}">
+						
+							<div th:each="turno, index : ${turnos}">																        	
+                                    <form th:action="@{/turnos/agregarTurno}" method="POST">
+                                    	<input type="hidden" name="id" th:value="${idEmpleadoElegido}">
+	                                    <input type="hidden" name="tipo" th:value="${tipo}">
+	                                    <input type="hidden" name="dia" th:value="${diaElegido}">
+	                                    <input type="hidden" name="mes" th:value="${mesElegido}">
+	                                    <input type="hidden" name="anio" th:value="${anioElegido}">
+	                                    <input type="hidden" name="hora" th:value="${turno}">
+	                                    
+	                                    <button type="submit" class="btn2 green" style="width: auto; padding: 8px 12px; margin: 4px 6px;" th:text="${turno + 'hs.'}"></button>	
+                                    </form>
+                                   
+                            </div>	
+						</div>
 
-							<table class="lista" th:if="${turnos != null}">
-                                <thead>
-                                    <tr class="lista">
-                                        <th class="lista"></th>
-                                        <th class="lista">Hora</th>
-                                        <th class="lista">Precio</th>
-                                        <th class="lista"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>			        	
-                                    <tr class="lista" th:each="turno, index : ${turnos}">
-                                        <td class="lista" >-</td>
-										<td class="lista"><span th:text="${turno.hora}"></span></td>
-										<td class="lista"></td>
-										<td class="lista"><div></div></td>
-                                    </tr>
-                                </tbody>
-                            </table>	
 
 
 
 
-<form th:action="@{/mp}" method="POST">
-    <div class="cho-container"></div>
-</form>
-
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-
-       
-    <script>
-    
-    		
-        const mp = new MercadoPago('TEST-85a1332f-c459-4b6d-af17-317316626b13', {
-            locale: 'es-AR'
-        })
-        const checkout = mp.checkout({
-            preference: {
-                id: '1'
-            }
-        });
-        checkout.render({
-            container: '.cho-container',
-            label: 'Pagar'
-        });
-    </script>
       
 <script type="text/javascript" src="../js/slide.js"></script>        
 

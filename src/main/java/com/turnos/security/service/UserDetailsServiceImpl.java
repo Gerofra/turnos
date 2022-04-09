@@ -1,8 +1,5 @@
 package com.turnos.security.service;
 
-
-
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +14,22 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.turnos.entities.Usuario;
 import com.turnos.services.UsuarioService;
 
-
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-	
 	@Autowired
 	private UsuarioService usuarioService;
-	
 
-	
 	@Override
 	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-		Usuario usuario = usuarioService.getByMail(mail).orElseThrow(()-> new UsernameNotFoundException(mail));
-		
-		
-			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-			HttpSession session = attr.getRequest().getSession(true);
-			session.setAttribute("usuariosession", usuario);
+		Usuario usuario = usuarioService.getByMail(mail).orElseThrow(() -> new UsernameNotFoundException(mail));
+
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession(true);
+		session.setAttribute("usuariosession", usuario);
 
 		return UsuarioPrincipal.build(usuario);
-		
+
 	}
 
-
-
-    
 }
